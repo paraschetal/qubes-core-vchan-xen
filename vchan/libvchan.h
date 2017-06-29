@@ -2,6 +2,7 @@
  * The Qubes OS Project, http://www.qubes-os.org
  *
  * Copyright (C) 2010  Rafal Wojtczuk  <rafal@invisiblethingslab.com>
+ * Copyright (C) 2017  Paras Chetal  <paras.chetal@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -37,6 +38,11 @@ typedef int EVTCHN;
 #define VCHAN_CONNECTED 1
 /* vchan server initialized, waiting for client to connect */
 #define VCHAN_WAITING 2
+
+#define MOCK_BUFFER_SPACE 10240
+#define UNUSED(x) (void)(x)
+
+
 
 struct libvchan;
 typedef struct libvchan libvchan_t;

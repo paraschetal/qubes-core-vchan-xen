@@ -2,6 +2,7 @@
  * The Qubes OS Project, http://www.qubes-os.org
  *
  * Copyright (C) 2013  Marek Marczykowski <marmarek@invisiblethingslab.com>
+ * Copyright (C) 2017  Paras Chetal <paras.chetal@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,16 +23,15 @@
 #ifndef _LIBVCHAN_PRIVATE_H
 #define _LIBVCHAN_PRIVATE_H
 
-#include <libxenvchan.h>
 
 struct libvchan {
-    struct libxenvchan *xenvchan;
+    FILE *filevchan;
     /* store path, which should be removed after client connect (server only) */
-    char *xs_path;
-    int remote_domain;
-    xc_interface *xc_handle;
+    char *fvchan_path;
+    int blocking;
+    int filedes;
+    size_t read_min, write_min;
 };
 
-int libvchan__check_domain_alive(xc_interface *xc_handle, int dom);
 
 #endif

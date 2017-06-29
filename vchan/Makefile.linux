@@ -2,6 +2,7 @@
 # The Qubes OS Project, http://www.qubes-os.org
 #
 # Copyright (C) 2010  Rafal Wojtczuk  <rafal@invisiblethingslab.com>
+# Copyright (C) 2017  Paras Chetal  <paras.chetal@gmail.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,14 +20,10 @@
 #
 #
 
-CC=gcc
-CFLAGS=-g -Wall -Wextra -Werror -fPIC -O2
-all: libvchan-xen.so vchan-xen.pc
+CFLAGS+=-g -Wall -Wextra -Werror -O2
+all: libvcan-xen.a
 
-libvchan-xen.so : init.o io.o
-	gcc -shared -o libvchan-xen.so $^ -lxenvchan -lxenctrl
+libvcan-xen.a : init.o io.o
+	ar rcs $@ $^
 clean:
-	rm -f *.o *so *~ client server node node-select
-
-vchan-xen.pc: vchan-xen.pc.in
-	sed -e "s/@VERSION@/`cat ../version`/" $< > $@
+	rm -f *.a *.o *so *~
